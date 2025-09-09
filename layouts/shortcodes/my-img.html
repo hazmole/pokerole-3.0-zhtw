@@ -1,0 +1,4 @@
+{{- $source := (.Get "src") }}
+{{- $width := (.Get "width") }}
+
+<img src="{{ .Site.BaseURL }}/{{ $source }}" style="width:{{ $width }}px; height:auto;" />

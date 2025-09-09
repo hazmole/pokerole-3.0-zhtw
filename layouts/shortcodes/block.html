@@ -1,0 +1,10 @@
+{{ $title := .Get "title" }}
+
+<div class="block" {{ if or (.Get "open") (in .Params "open") }}open{{ end }}>
+  {{- if $title }}
+  <b>{{ $title }}：</b>
+  {{- end -}}
+  <div class="markdown-inner">
+    {{ .Inner | markdownify }}
+  </div>
+</div>

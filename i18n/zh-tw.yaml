@@ -1,0 +1,52 @@
+---
+edit_page: 編輯頁面
+
+nav_navigation: 目錄
+nav_tags: 標籤
+nav_more: 更多
+nav_top: 回到頂部
+
+form_placeholder_search: 搜尋
+
+error_page_title: 迷路了嗎? 別擔心
+error_message_title: 迷路了嗎?
+error_message_code: 404 錯誤
+error_message_text: >
+  Seems like what you are looking for can't be found. Don't worry, we can
+  bring you back to the <a class="gdoc-error__link" href="{{ . }}">homepage</a>.
+
+button_toggle_dark: 切換夜晚/白天/自動模式
+button_nav_open: Open Navigation
+button_nav_close: Close Navigation
+button_menu_open: Open Menu Bar
+button_menu_close: Close Menu Bar
+button_homepage: 回到首頁
+
+title_anchor_prefix: "Anchor to:"
+
+posts_read_more: 閱讀全文
+posts_read_time:
+  one: "One minute to read"
+  other: "{{ . }} minutes to read"
+posts_update_prefix: Updated on
+posts_count:
+  one: "One post"
+  other: "{{ . }} posts"
+posts_tagged_with: All posts tagged with '{{ . }}'
+
+footer_build_with: >
+  使用 <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> 編輯製作
+footer_legal_notice: 法律聲明
+footer_privacy_policy: 隱私政策
+footer_content_license_prefix: >
+  Content licensed under
+
+language_switch_no_tranlation_prefix: "Page not translated:"
+
+propertylist_required: required
+propertylist_optional: optional
+propertylist_default: default
+
+pagination_page_prev: 上一頁
+pagination_page_next: 下一頁
+pagination_page_state: "{{ .PageNumber }}/{{ .TotalPages }}"

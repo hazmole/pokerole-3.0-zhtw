@@ -1,0 +1,198 @@
+/* Global customization */
+
+:root {
+  --code-max-height: 60rem;
+}
+
+/* Light mode theming */
+:root,
+:root[color-theme="light"] {
+  --header-background: #982320;
+  --header-font-color: #ffffff;
+
+  --body-background: #ffffff;
+  --body-font-color: #343a40;
+
+  --mark-color: #ffab00;
+
+  --button-background: #62cb97;
+  --button-border-color: #4ec58a;
+
+  --link-color: #518169;
+  --link-color-visited: #c54e8a;
+
+  --code-background: #f5f6f8;
+  --code-accent-color: #e3e7eb;
+  --code-accent-color-lite: #eff1f3;
+  --code-font-color: #5f5f5f;
+
+  --code-copy-background: #f5f6f8;
+  --code-copy-font-color: #6b7784;
+  --code-copy-border-color: #adb4bc;
+  --code-copy-success-color: #00c853;
+
+  --accent-color: #e9ecef;
+  --accent-color-lite: #fbf0fb;
+
+  --control-icons: #b2bac1;
+
+  --footer-background: #2a2525;
+  --footer-font-color: #ffffff;
+  --footer-link-color: #ffcc5c;
+  --footer-link-color-visited: #ffcc5c;
+}
+
+:root h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--footer-background);
+}
+:root h3 {
+  margin-bottom: 0;
+  font-size: 1.3rem;
+  color: var(--header-background);
+}
+:root h4 {
+  margin-top: .5em;
+  margin-bottom: 0;
+}
+:root p {
+  margin-block-start: .5em;
+}
+
+/* Block  */
+:root .block {
+  background-color: var(--code-background);
+  padding: .5rem;
+  margin-top: .5rem;
+}
+:root .block p {
+  margin-top: 0;
+  margin-bottom: .5em;
+}
+:root .block p:last-child {
+  margin-bottom: 0;
+}
+
+:root .char-profile-block {
+  background:var(--code-accent-color);
+  font-weight:bolder;
+  padding: .5rem;
+}
+
+:root .ideal-card,
+:root .flaw-card {
+  margin: .5rem;
+  padding: .5rem;
+  border: 0px solid black;
+}
+:root .ideal-card .quote,
+:root .flaw-card .quote {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: bold;
+  font-style: italic;
+  text-indent: -1em;
+  padding-left: 1em;
+}
+:root .ideal-card .quote { color: #4b7db3; }
+:root .flaw-card .quote {  color: #b13c3c; }
+
+:root .ideal-card .title,
+:root .flaw-card .title {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+:root .ideal-card .desc,
+:root .flaw-card .desc {
+  font-size: 15px;
+}
+
+/* Number tag */
+.num-tag {
+  display: inline;
+  position: relative;
+  padding: 0 5px;
+  margin-right: 5px;
+  font-size: 14px;
+  font-weight:bold;
+}
+.num-tag.cost:after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  bottom: 0; top: 0;
+  border-right: 0px;
+  border-left: 6px solid black;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+.num-tag.cost { margin-right:10px; background:black; color:white; }
+.num-tag.dmg  { margin-right:5px; background:white; color:red; border:red solid 2px; }
+.num-tag.dmg:after { border-left-color:red; }
+
+/* RollingDice tag */
+.rolling-tag {
+  display: inline-block;
+  padding: 0 1.1em;
+  background: #714c81;
+  color: white;
+  line-height: 1.3rem;
+  font-size: 14px;
+}
+
+/* Item block */
+.item-block {
+  border: 2px solid var(--code-copy-font-color);
+  border-radius:5px; 
+  padding: 0em;
+  margin: .5em 0;
+}
+.item-block .title {
+  font-weight: bold;
+  padding: .5em .5em .2em .5em;
+}
+.item-block .markdown-inner {
+  padding: .5em;
+}
+.item-block .title       a { display:none; }
+.item-block .title:hover a { display:inline; color:var(--control-icons); }
+
+.item-block p,
+.item-block ul {
+  margin-top: .5em;
+  margin-bottom: .8em;
+}
+.item-block p:last-child,
+.item-block ul:last-child {
+  margin-bottom: 0em;
+}
+.item-block .table-wrap { margin: 0;}
+.item-block thead { display:none; }
+.item-block tr:last-child { border-bottom:0 !important; }
+
+:root {
+  --role-color-fighter:    #fb1212;
+  --role-color-invoker:    #3251c7;
+  --role-color-ranger:     #0099bd;
+  --role-color-naturalist: #019700;
+  --role-color-doctor:     #741b47;
+  --role-color-spy:        #5826b5;
+  --role-color-magician:   #e6039b;
+  --role-color-wizard:     #dfb100;
+}
+.item-block.ability.fighter    { border-color: var(--role-color-fighter); }
+.item-block.ability.invoker    { border-color: var(--role-color-invoker); }
+.item-block.ability.ranger     { border-color: var(--role-color-ranger); }
+.item-block.ability.naturalist { border-color: var(--role-color-naturalist); }
+.item-block.ability.doctor     { border-color: var(--role-color-doctor); }
+.item-block.ability.spy        { border-color: var(--role-color-spy); }
+.item-block.ability.magician   { border-color: var(--role-color-magician); }
+.item-block.ability.wizard     { border-color: var(--role-color-wizard); }
+
+.item-block.example { border-color: var(--code-copy-border-color); }
+.item-block.example.clue        { border-color:#9b395d; }
+.item-block.example.clue .title { background:  #9b395d; color:var(--accent-color); }
+.item-block.example.challenge        { border-color:#5a4b73; }
+.item-block.example.challenge .title { background:  #5a4b73; color:var(--accent-color); }

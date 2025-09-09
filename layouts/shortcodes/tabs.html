@@ -1,0 +1,36 @@
+{{- if .Inner }}{{ end }}
+{{- $id := .Get 0 }}
+{{- $group := printf "tabs-%s" $id }}
+
+<script>
+  window.onload = scrollToTab;
+  window.onhashchange = scrollToTab;
+
+  function scrollToTab(){
+    var hash = window.location.hash;
+    var pageId = decodeURI(hash.substring(1));
+    var itemObj = document.getElementById(pageId);
+    if(itemObj==null) return ;
+
+    var ctrlObj = itemObj.parentNode.parentNode.previousElementSibling.previousElementSibling;
+    ctrlObj.checked = true;
+    itemObj.scrollIntoView();
+  }
+</script>
+<div class="gdoc-tabs">
+  {{- range $index, $tab := .Scratch.Get $group }}
+    <input
+      type="radio"
+      class="gdoc-tabs__control hidden"
+      name="{{ $group }}"
+      id="{{ printf "%s-%d" $group $index }}"
+      {{ if not $index }}checked="checked"{{ end }}
+    />
+    <label for="{{ printf "%s-%d" $group $index }}" class="gdoc-tabs__label">
+      {{ $tab.Name }}
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      {{ .Content | $.Page.RenderString }}
+    </div>
+  {{- end }}
+</div>

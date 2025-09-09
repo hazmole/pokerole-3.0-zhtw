@@ -1,0 +1,13 @@
+{{ $title := .Get "title" }}
+
+<div class="item-block">
+  {{- if $title }}
+  <div class="title" id="{{ $title }}">
+    {{ $title }}
+    <a href="#{{ $title }}"><svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg></a>
+  </div>
+  {{- end -}}
+  <div class="markdown-inner">
+    {{ .Inner | markdownify }}
+  </div>
+</div>
