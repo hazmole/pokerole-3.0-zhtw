@@ -42,6 +42,10 @@
   --footer-link-color-visited: #ffcc5c;
 }
 
+:root {
+  --poke-bug-type-color: #ab2;
+}
+
 :root h2 {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -60,139 +64,47 @@
   margin-block-start: .5em;
 }
 
-/* Block  */
-:root .block {
-  background-color: var(--code-background);
-  padding: .5rem;
-  margin-top: .5rem;
-}
-:root .block p {
-  margin-top: 0;
-  margin-bottom: .5em;
-}
-:root .block p:last-child {
-  margin-bottom: 0;
-}
-
-:root .char-profile-block {
-  background:var(--code-accent-color);
-  font-weight:bolder;
-  padding: .5rem;
-}
-
-:root .ideal-card,
-:root .flaw-card {
-  margin: .5rem;
-  padding: .5rem;
-  border: 0px solid black;
-}
-:root .ideal-card .quote,
-:root .flaw-card .quote {
-  display: flex;
-  flex-direction: row;
+/* MoveCard */
+.MoveCard { width: 100%; max-width: 650px; }
+.MoveCard > .Header { 
+  display:flex;
+  flex-direction:row;
   align-items: center;
+  background-color: rgba(255, 255, 255, .5); }
+.MoveCard > .Header > div { 
+  height: 45px;
+  display: flex;
+  align-items: center;}
+.MoveCard > .Header > .Name {
+  flex-grow: 1;
+  padding: 0 .5em;
+  font-size: 1.2em;
   font-weight: bold;
-  font-style: italic;
-  text-indent: -1em;
-  padding-left: 1em;
-}
-:root .ideal-card .quote { color: #4b7db3; }
-:root .flaw-card .quote {  color: #b13c3c; }
-
-:root .ideal-card .title,
-:root .flaw-card .title {
-  font-weight: bold;
+  color: black; }
+.MoveCard > .Header > .Power {
+  padding: 0 .5em;
   font-size: 1.1em;
-}
-:root .ideal-card .desc,
-:root .flaw-card .desc {
-  font-size: 15px;
-}
-
-/* Number tag */
-.num-tag {
-  display: inline;
-  position: relative;
-  padding: 0 5px;
-  margin-right: 5px;
-  font-size: 14px;
-  font-weight:bold;
-}
-.num-tag.cost:after {
-  content: "";
-  position: absolute;
-  right: -6px;
-  bottom: 0; top: 0;
-  border-right: 0px;
-  border-left: 6px solid black;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-}
-.num-tag.cost { margin-right:10px; background:black; color:white; }
-.num-tag.dmg  { margin-right:5px; background:white; color:red; border:red solid 2px; }
-.num-tag.dmg:after { border-left-color:red; }
-
-/* RollingDice tag */
-.rolling-tag {
-  display: inline-block;
-  padding: 0 1.1em;
-  background: #714c81;
-  color: white;
-  line-height: 1.3rem;
-  font-size: 14px;
-}
-
-/* Item block */
-.item-block {
-  border: 2px solid var(--code-copy-font-color);
-  border-radius:5px; 
-  padding: 0em;
-  margin: .5em 0;
-}
-.item-block .title {
   font-weight: bold;
-  padding: .5em .5em .2em .5em;
+  color: white;
+  background-color: rgba(0, 0, 0, .5); }
+.MoveCard > .Header > .Category { 
+  width: fit-content; flex-shrink: 0;
+  background-color: rgba(0, 0, 0, .5); }
+.MoveCard > .Header > .Category .physical { 
+  content: url("./images/icons/move-category-physical.png");
+  height: 100%;
 }
-.item-block .markdown-inner {
-  padding: .5em;
-}
-.item-block .title       a { display:none; }
-.item-block .title:hover a { display:inline; color:var(--control-icons); }
+.MoveCard > .Body > .Info { 
+  display: flex; flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+  color: black;
+  background-color: rgba(255, 255, 255, .3); }
+.MoveCard > .Footer { 
+  padding: 3px 5px;
+  font-size: .8em;
+  text-indent: .5em;
+  color: #eee;
+  background-color: rgba(0, 0, 0, .3); }
 
-.item-block p,
-.item-block ul {
-  margin-top: .5em;
-  margin-bottom: .8em;
-}
-.item-block p:last-child,
-.item-block ul:last-child {
-  margin-bottom: 0em;
-}
-.item-block .table-wrap { margin: 0;}
-.item-block thead { display:none; }
-.item-block tr:last-child { border-bottom:0 !important; }
-
-:root {
-  --role-color-fighter:    #fb1212;
-  --role-color-invoker:    #3251c7;
-  --role-color-ranger:     #0099bd;
-  --role-color-naturalist: #019700;
-  --role-color-doctor:     #741b47;
-  --role-color-spy:        #5826b5;
-  --role-color-magician:   #e6039b;
-  --role-color-wizard:     #dfb100;
-}
-.item-block.ability.fighter    { border-color: var(--role-color-fighter); }
-.item-block.ability.invoker    { border-color: var(--role-color-invoker); }
-.item-block.ability.ranger     { border-color: var(--role-color-ranger); }
-.item-block.ability.naturalist { border-color: var(--role-color-naturalist); }
-.item-block.ability.doctor     { border-color: var(--role-color-doctor); }
-.item-block.ability.spy        { border-color: var(--role-color-spy); }
-.item-block.ability.magician   { border-color: var(--role-color-magician); }
-.item-block.ability.wizard     { border-color: var(--role-color-wizard); }
-
-.item-block.example { border-color: var(--code-copy-border-color); }
-.item-block.example.clue        { border-color:#9b395d; }
-.item-block.example.clue .title { background:  #9b395d; color:var(--accent-color); }
-.item-block.example.challenge        { border-color:#5a4b73; }
-.item-block.example.challenge .title { background:  #5a4b73; color:var(--accent-color); }
+.MoveCard.Bug { background: var(--poke-bug-type-color); }

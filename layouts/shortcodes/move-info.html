@@ -1,0 +1,18 @@
+<script src="{{ .Site.BaseURL }}/data/move-list.js"></script>
+<script>
+  window.onload = init();
+
+  function init() {
+    setTimeout( ()=>{
+      const elem = document.getElementById("TheMove");
+      renderMove(elem, MOVES[0]);
+    }, 0);
+    
+  }
+</script>
+
+<div class="MoveInfo-OuterFrame">
+  
+  <div id="TheMove"></div>
+
+</div>
