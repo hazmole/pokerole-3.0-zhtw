@@ -5,7 +5,9 @@
   function init() {
     setTimeout( ()=>{
       const elem = document.getElementById("TheMove");
-      renderMove(elem, MOVES[0]);
+      const viewArr = MOVES.slice(0, 10);
+
+      elem.innerHTML = viewArr.map( obj => renderMove(obj)).join('<br>');
     }, 0);
     
   }
