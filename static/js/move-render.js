@@ -24,7 +24,7 @@ function renderMove(elem, moveObj) {
   }
   function getInfoBlock() {
     const entryArr = [];
-    entryArr.push(`<div><b>屬性</b>：${moveObj.type}</div>`);
+    entryArr.push(`<div><b>屬性</b>：${Utils.getPokeType(moveObj.type)}</div>`);
     entryArr.push(`<div><b>命中</b>：${moveObj.acc_roll}</div>`);
     entryArr.push(`<div><b>傷害</b>：${moveObj.dmg_roll}</div>`);
     return `<div class="Info">${ entryArr.join('') }</div>`;
