@@ -43,7 +43,28 @@
 }
 
 :root {
-  --poke-bug-type-color: #ab2;
+  --poke-bug-type-color: #AABB22;
+  --poke-dark-type-color: #775544;
+  --poke-dragon-type-color: #7766EE;
+  --poke-electric-type-color: #FFCC33;
+  --poke-fairy-type-color: #FFAAFF;
+  --poke-fight-type-color: #BB5544;
+  --poke-fire-type-color: #FF5C42;
+  --poke-flying-type-color: #84ADFF;
+  --poke-ghost-type-color: #6666BB;
+  --poke-grass-type-color: #5EB83A;
+  --poke-ground-type-color: #DDBB55;
+  --poke-ice-type-color: #77DDFF;
+  --poke-poison-type-color: #AA5599;
+  --poke-psychic-type-color: #FF99C2;
+  --poke-rock-type-color: #BBAA66;
+  --poke-steel-type-color: #AAAABB;
+  --poke-water-type-color: #3399FF;
+  
+  --icon-buff-color: #20b1ff;
+  --icon-debuff-color: #ff2424;
+  --icon-reaction-color: #56a0a4;
+  --icon-heal-color: #F8ABA6;
 }
 
 :root h2 {
@@ -111,7 +132,8 @@
   color: #eee;
   background-color: rgba(0, 0, 0, .3); }
 
-.MoveCard.Bug { background: var(--poke-bug-type-color); }
+.MoveCard.Bug { background-color: var(--poke-bug-type-color); }
+.MoveCard.Dark { background-color: var(--poke-dark-type-color); }
 
 
 
@@ -122,3 +144,91 @@
   border-radius: .5rem;
   background-color: rgba(255, 255, 255, .3);
   content: ""; }
+
+.TraitIcon > .RollOuter,
+.TraitIcon > .FrameOuter {
+  height: 100%; width: 100%;
+  border-radius: inherit; }
+
+.TraitIcon > .RollOuter,
+.TraitIcon > .DurationOuter {
+  background-color: #eee; }
+
+.TraitIcon .RollOuter,
+.TraitIcon .HealOuter,
+.TraitIcon .DurationOuter {
+  position: relative; }
+
+.TraitIcon .RollOuter > .Image,
+.TraitIcon .DurationOuter > .Image {
+  height: 100%; width: 100%; }
+.TraitIcon .HealOuter > .Image {
+  display: block;
+  height: 30px;
+}
+.TraitIcon > .RollOuter > .Value {
+  position: absolute;
+  left: 31px; top:24px;
+  color: white;
+  font-size: 19px;
+  font-weight: bold; }
+.TraitIcon > .DurationOuter > .Value {
+  position: absolute;
+  left: 25px; top:15px;
+  width: 30px; margin-left: -15px;
+  color: #425c92;
+  font-size: 22px; text-align: center;
+  font-weight: bold; }
+.TraitIcon .HealOuter > .Value {
+  position: absolute;
+  left: 16px; top:2px;
+  width: 30px; margin-left: -15px;
+  color: white;
+  font-size: 20px; text-align: center;
+  font-weight: bold; }
+
+.TraitIcon > .FrameOuter > .FrameTitle {
+  text-align: center;
+  color: white;
+  font-size: 11px;
+  line-height: 17px; }
+.TraitIcon > .FrameOuter > .FrameInner {
+  border-radius: inherit;
+  display: flex; flex-direction: row;
+  align-items: baseline; justify-content: center;
+  margin: 0 3px;
+  height: 31px;
+  background-color: white; }
+.TraitIcon .FrameInner > .arrow { font-size: 25px; }
+.TraitIcon .FrameInner > .value { font-size: 20px; font-weight: bold; margin: 3px 2px; }
+.TraitIcon .FrameInner > .RollOuter { height: 30px; }
+.TraitIcon .FrameInner > .RollOuter > .Value {
+  position: absolute;
+  left: 18px; top:10px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold; }
+
+.FrameOuter.buff { background-color: var(--icon-buff-color); }
+.FrameOuter.debuff { background-color: var(--icon-debuff-color); }
+.FrameOuter.low-acc { background-color: black; }
+.FrameOuter.reaction { background-color: var(--icon-reaction-color); }
+.FrameOuter.heal { background-color: var(--icon-heal-color); }
+.FrameOuter.paralysis { background-color: #d4c53e; }
+.FrameOuter.burn1 { background-color: #ff7f1a; }
+.FrameOuter.burn2 { background-color: #cc0500; }
+.FrameOuter.burn3 { background-color: #960703; }
+.FrameOuter.sleep { background-color: #a7ab99; }
+.FrameOuter.poison { background-color: #a574af; }
+.FrameOuter.poison2 { background-color: #672b73; }
+.FrameOuter.frozen { background-color: #86e0de; }
+.FrameOuter.flinch { background-color: #4a537b; }
+.FrameOuter.love { background-color: #f54e78; }
+.FrameOuter.confuse { background-color: #1cb579; }
+.FrameOuter.disabled { background-color: #ff3600; }
+
+.FrameInner.low-acc { background-color: #ff2424 !important; color: white; }
+.FrameInner.buff { color: var(--icon-buff-color); }
+.FrameInner.debuff { color: var(--icon-debuff-color); }
+.FrameInner.reaction { color: var(--icon-reaction-color); }
+.FrameInner.heal { color: white; }

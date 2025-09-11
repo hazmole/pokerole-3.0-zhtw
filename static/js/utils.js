@@ -24,3 +24,15 @@ Utils.getPokeType = function(key) {
   }
   return "???";
 }
+Utils.getPokeAttribute = function(key) {
+  switch(key.toLowerCase()) {
+    case "str":  return "力量";
+    case "dex":  return "靈巧";
+    case "vit":  return "活力";
+    case "def":  return "防禦";
+    case "sdef": return "特防";
+    case "spe":  return "特殊";
+    case "all":  return "全屬性";
+  }
+  return "";
+}
