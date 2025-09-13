@@ -9,7 +9,7 @@ function renderMove(moveObj) {
   ].join('') }</div>`);
   layoutArr.push(`<div class="Footer">${ getFooterBlock() }</div>`);
 
-  return `<div class="MoveCard ${moveObj.type}">${layoutArr.join('')}</div>`;
+  return `<div class="MoveCard ${moveObj.type}TypeBgColor">${layoutArr.join('')}</div>`;
 
   // =====================
   function getHeaderBlock() {
@@ -27,7 +27,16 @@ function renderMove(moveObj) {
     return layoutArr.join('');
   }
   function getTraitBlock() {
-    return `<div class="Traits">${ moveObj.traits.map( t => renderTrait(t) ).join('') }</div>`;
+    return `<div class="Traits">${ moveObj.traits.map( t => {
+      const matchResult = t.match(/^\*+/);
+      let ticket = t;
+      let note = "";
+      if (matchResult !== null) {
+        note = matchResult[0];
+        ticket = t.slice(note.length);
+      }
+      return `<div class="easyRow" style="gap:2px">${note}${renderTrait(ticket)}</div>`;
+    }).join('') }</div>`;
   }
   function getInfoBlock() {
     const entryArr = [];

@@ -32,7 +32,7 @@ Utils.getPokeAttribute = function(key) {
     case "def":  return "防禦";
     case "sdef": return "特防";
     case "spe":  return "特殊";
-    case "all":  return "全屬性";
+    case "acc":  return "命中";
   }
   return "";
 }

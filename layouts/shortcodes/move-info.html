@@ -5,10 +5,10 @@
   function init() {
     setTimeout( ()=>{
       const elem = document.getElementById("TheMove");
-      const viewArr = MOVES;
+      const viewArr = MOVES.filter(obj => obj.type === "Electric");
 
       elem.innerHTML = viewArr.map( obj => renderMove(obj)).join('<br>');
-    }, 0);
+    }, 100);
     
   }
 </script>
