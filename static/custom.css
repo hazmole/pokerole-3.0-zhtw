@@ -56,13 +56,14 @@
   --poke-ground-type-color: #DDBB55;
   --poke-ice-type-color: #77DDFF;
   --poke-poison-type-color: #AA5599;
+  --poke-normal-type-color: #dddddd;
   --poke-psychic-type-color: #FF99C2;
   --poke-rock-type-color: #BBAA66;
   --poke-steel-type-color: #AAAABB;
   --poke-water-type-color: #3399FF;
   
-  --icon-buff-color: #20b1ff;
-  --icon-debuff-color: #ff2424;
+  --icon-user-color: #20b1ff;
+  --icon-foe-color: #ff2424;
   --icon-reaction-color: #56a0a4;
   --icon-heal-color: #F8ABA6;
 }
@@ -85,6 +86,14 @@
   margin-block-start: .5em;
 }
 
+.clickable {
+  cursor: pointer;
+}
+.easyRow {
+  display: flex;
+  flex-direction: row;
+}
+
 /* MoveCard */
 .MoveCard { width: 100%; max-width: 650px; }
 .MoveCard > .Header { 
@@ -102,8 +111,10 @@
   font-size: 1.2em;
   font-weight: bold;
   color: black; }
+.MoveCard > .Header > .Name > .Alias { font-size: 0.8em; margin-left: .5em; }
 .MoveCard > .Header > .Power {
   padding: 0 .5em;
+  width: 90px;
   font-size: 1.1em;
   font-weight: bold;
   color: white;
@@ -115,6 +126,7 @@
 .MoveCard > .Body > .Traits {
   display: flex; flex-direction: row; flex-wrap: wrap;
   margin: 5px; gap: 5px;
+  color: white; font-weight: bold;
 }
 .MoveCard > .Body > .Info { 
   display: flex; flex-direction: column;
@@ -132,12 +144,7 @@
   color: #eee;
   background-color: rgba(0, 0, 0, .3); }
 
-.MoveCard.Bug { background-color: var(--poke-bug-type-color); }
-.MoveCard.Dark { background-color: var(--poke-dark-type-color); }
-
-
-
-
+/*  */
 .TraitIcon {
   width: 50px;
   height: 50px;
@@ -145,19 +152,33 @@
   background-color: rgba(255, 255, 255, .3);
   content: ""; }
 
-.TraitIcon > .RollOuter,
-.TraitIcon > .FrameOuter {
-  height: 100%; width: 100%;
-  border-radius: inherit; }
-
-.TraitIcon > .RollOuter,
-.TraitIcon > .DurationOuter {
-  background-color: #eee; }
+.TraitIcon > .TextOuter,
+.TraitIcon > .CategoryOuter {
+  display: flex; align-items: center;
+  height: 100%; }
+.TraitIcon > .TextOuter {
+  width: 100%;
+  border-radius: inherit; border: 1px solid rgba(0, 0, 0, .3); }
+.TraitIcon > .TextOuter > .value { 
+  width: 100%; text-align: center;
+  font-size: 11px; line-height:16px; }
+.TraitIcon > .CategoryOuter > .Image {
+  height: fit-content; }
 
 .TraitIcon .RollOuter,
 .TraitIcon .HealOuter,
 .TraitIcon .DurationOuter {
   position: relative; }
+
+.TraitIcon > .RollOuter,
+.TraitIcon > .FrameOuter {
+  height: 100%; width: 100%;
+  border-radius: inherit; }
+
+.TraitIcon > .RollOuter {
+  background-color: #eee; }
+
+
 
 .TraitIcon .RollOuter > .Image,
 .TraitIcon .DurationOuter > .Image {
@@ -195,12 +216,20 @@
 .TraitIcon > .FrameOuter > .FrameInner {
   border-radius: inherit;
   display: flex; flex-direction: row;
-  align-items: baseline; justify-content: center;
+  align-items: stretch; justify-content: center;
   margin: 0 3px;
   height: 31px;
   background-color: white; }
-.TraitIcon .FrameInner > .arrow { font-size: 25px; }
+.TraitIcon .FrameInner > .prefix { 
+  font-size: 20px; line-height: normal;
+  height: 100%;
+  display: flex;
+  align-items: center; }
+.TraitIcon .FrameInner > .prefix.arrow { padding-bottom: 3px; }
+  
 .TraitIcon .FrameInner > .value { font-size: 20px; font-weight: bold; margin: 3px 2px; }
+.TraitIcon .FrameInner > .AlwaysMark { font-size: 20px; font-weight: bold; color: #4cbb4c; line-height: normal; }
+.TraitIcon .FrameInner > .NeverMark { font-size: 20px; font-weight: bold; color: #e02a2a; line-height: normal; }
 .TraitIcon .FrameInner > .RollOuter { height: 30px; }
 .TraitIcon .FrameInner > .RollOuter > .Value {
   position: absolute;
@@ -209,8 +238,8 @@
   font-size: 12px;
   font-weight: bold; }
 
-.FrameOuter.buff { background-color: var(--icon-buff-color); }
-.FrameOuter.debuff { background-color: var(--icon-debuff-color); }
+.FrameOuter.user { background-color: var(--icon-user-color); }
+.FrameOuter.foe  { background-color: var(--icon-foe-color); }
 .FrameOuter.low-acc { background-color: black; }
 .FrameOuter.reaction { background-color: var(--icon-reaction-color); }
 .FrameOuter.heal { background-color: var(--icon-heal-color); }
@@ -221,14 +250,33 @@
 .FrameOuter.sleep { background-color: #a7ab99; }
 .FrameOuter.poison { background-color: #a574af; }
 .FrameOuter.poison2 { background-color: #672b73; }
-.FrameOuter.frozen { background-color: #86e0de; }
+.FrameOuter.freeze { background-color: #86e0de; }
 .FrameOuter.flinch { background-color: #4a537b; }
 .FrameOuter.love { background-color: #f54e78; }
 .FrameOuter.confuse { background-color: #1cb579; }
 .FrameOuter.disabled { background-color: #ff3600; }
 
 .FrameInner.low-acc { background-color: #ff2424 !important; color: white; }
-.FrameInner.buff { color: var(--icon-buff-color); }
-.FrameInner.debuff { color: var(--icon-debuff-color); }
+.FrameInner.user { color: var(--icon-user-color); }
+.FrameInner.foe { color: var(--icon-foe-color); }
 .FrameInner.reaction { color: var(--icon-reaction-color); }
 .FrameInner.heal { color: white; }
+
+.BugTypeBgColor { background-color: var(--poke-bug-type-color); }
+.DarkTypeBgColor { background-color: var(--poke-dark-type-color); color: white; }
+.DragonTypeBgColor { background-color: var(--poke-dragon-type-color); color: white; }
+.ElectricTypeBgColor { background-color: var(--poke-electric-type-color); }
+.FairyTypeBgColor { background-color: var(--poke-fairy-type-color); }
+.FightingTypeBgColor { background-color: var(--poke-fight-type-color); color: white; }
+.FireTypeBgColor { background-color: var(--poke-fire-type-color); }
+.FlyingTypeBgColor { background-color: var(--poke-flying-type-color); }
+.GhostTypeBgColor { background-color: var(--poke-ghost-type-color); color: white; }
+.GrassTypeBgColor { background-color: var(--poke-grass-type-color); }
+.GroundTypeBgColor { background-color: var(--poke-ground-type-color); }
+.IceTypeBgColor { background-color: var(--poke-ice-type-color); }
+.NormalTypeBgColor { background-color: var(--poke-normal-type-color); }
+.PoisonTypeBgColor { background-color: var(--poke-poison-type-color); color: white; }
+.PsychicTypeBgColor { background-color: var(--poke-psychic-type-color); }
+.RockTypeBgColor { background-color: var(--poke-rock-type-color); }
+.SteelTypeBgColor { background-color: var(--poke-steel-type-color); }
+.WaterTypeBgColor { background-color: var(--poke-water-type-color); }

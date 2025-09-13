@@ -32,7 +32,22 @@ Utils.getPokeAttribute = function(key) {
     case "def":  return "防禦";
     case "sdef": return "特防";
     case "spe":  return "特殊";
-    case "all":  return "全屬性";
+    case "acc":  return "命中";
   }
   return "";
+}
+
+Utils.allPokeTypes = function() {
+  return [ "bug", "dark", "dragon", "electric", "fairy", "fighting", "fire", "flying", "ghost", "grass", "ground", "ice", "normal", "poison", "psychic", "rock", "steel", "water" ];
+}
+
+function toggleMove(elem) {
+  const bodyElem = (elem).nextSibling;
+  const footerElem = (bodyElem).nextSibling;
+  bodyElem.classList.toggle("hidden");
+  footerElem.classList.toggle("hidden");
+}
+
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
 }

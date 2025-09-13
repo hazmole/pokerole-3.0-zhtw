@@ -1,0 +1,83 @@
+{{ $typeValArr  := slice "Bug" "Dark" "Dragon" "Electric" "Fairy" "Fighting" "Fire" "Ghost" "Grass" "Ground" "Ice" "Normal" "Poison" "Psychic" "Rock" "Steel" "Water" }}
+{{ $typeTextArr := slice "蟲" "惡" "龍" "電" "妖精" "格鬥" "火" "幽靈" "草" "地面" "冰" "一般" "毒" "超能" "岩" "鋼" "水" }}
+
+<script src="{{ .Site.BaseURL }}/data/move-list.js"></script>
+<script>
+  window.onload = init();
+
+  function init() {
+    setTimeout( ()=>{
+      search();
+    }, 100);
+  }
+
+  function render(itemArr) {
+    const elem = document.getElementById("TheMoveList");
+    elem.innerHTML = itemArr.map( obj => renderMove(obj, {isCollapsed: true})).join('');
+  }
+  function search() {
+    const nameSearchInput = document.getElementById("search-move-text-input").value;
+    render(filter(MOVES));
+  }
+  function filter(dataArr) {
+    const params = getFilterParams();  
+    const result = [];
+    
+    dataArr.forEach(data => {
+      // Filter Name & Alias
+      if (params.text != "") {
+        const key = params.text.toLowerCase();
+        if (!data.name.toLowerCase().includes(key)
+          && !data.alias.toLowerCase().includes(key)) {
+          return ;
+        }
+      }
+      // Filter Types
+      if (params.typeSelector.length > 0) {
+        if (!params.typeSelector.includes(data.type.toLowerCase())) return ;
+      }
+
+      result.push(data);
+    });
+
+    return result;
+  }
+
+  function getFilterParams() {
+    const params = {};
+
+    params.text = document.getElementById("search-move-text-input")?.value || "";
+    params.typeSelector = Utils.allPokeTypes().filter((typeText) => {
+      const elem = document.getElementById(`search-move-type-${typeText.capitalize()}`);
+      return elem && elem.checked;
+    });
+
+    return params;
+  }
+</script>
+
+
+<div class="MoveInfo-OuterFrame">
+  <div class="Searcher-OuterFrame">
+    <!-- Text -->
+    <div class="TextSearcherContainer">
+      <input class="TextSearcher" id="search-move-text-input" type="text" onchange="search()" />
+      <span class="searchicon"></span>
+    </div>
+
+    <div class="SelectorContainer">
+      {{ range $index, $val := $typeValArr }}
+        <label class="SelectorLabel {{ $val }}TypeBgColor">
+          <input id="search-move-type-{{ $val }}" class="HiddenCheckbox" type="checkbox" onchange="search()" />
+          <span>{{ index $typeTextArr $index }}</span>
+        </label>
+      {{ end }}
+    </div>
+
+  </div>
+
+
+
+  <div id="TheMoveList" style="display:flex; flex-direction: column; gap:1px;"></div>
+
+</div>

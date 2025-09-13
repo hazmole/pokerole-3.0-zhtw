@@ -1,20 +1,21 @@
 
-function renderMove(moveObj) {
+function renderMove(moveObj, options) {
   const layoutArr = [];
-
-  layoutArr.push(`<div class="Header" >${ getHeaderBlock() }</div>`);
-  layoutArr.push(`<div class="Body">${ [
+  const isCollapsedMode = !!options.isCollapsed; 
+  
+  layoutArr.push(`<div class="Header ${isCollapsedMode? "clickable": ""}" ${isCollapsedMode? "onclick='toggleMove(this)'": ""} >${ getHeaderBlock() }</div>`);
+  layoutArr.push(`<div class="Body ${isCollapsedMode? "hidden": ""}">${ [
     getTraitBlock(),
     getInfoBlock()
   ].join('') }</div>`);
-  layoutArr.push(`<div class="Footer">${ getFooterBlock() }</div>`);
+  layoutArr.push(`<div class="Footer ${isCollapsedMode? "hidden": ""}">${ getFooterBlock() }</div>`);
 
-  return `<div class="MoveCard ${moveObj.type}">${layoutArr.join('')}</div>`;
+  return `<div class="MoveCard ${moveObj.type}TypeBgColor">${layoutArr.join('')}</div>`;
 
   // =====================
   function getHeaderBlock() {
     const layoutArr = [];
-    layoutArr.push(`<div class="Name">${moveObj.name}</div>`);
+    layoutArr.push(`<div class="Name">${moveObj.name} <span class="Alias">${moveObj.alias}</span></div>`);
     layoutArr.push(`<div class="Power">威力：${moveObj.power}</div>`);
     layoutArr.push(`<div class="Category"><img src="${ROOT_PATH}/images/icons/${ function() {
       switch(moveObj.category) {
@@ -27,7 +28,16 @@ function renderMove(moveObj) {
     return layoutArr.join('');
   }
   function getTraitBlock() {
-    return `<div class="Traits">${ moveObj.traits.map( t => renderTrait(t) ).join('') }</div>`;
+    return `<div class="Traits">${ moveObj.traits.map( t => {
+      const matchResult = t.match(/^\*+/);
+      let ticket = t;
+      let note = "";
+      if (matchResult !== null) {
+        note = matchResult[0];
+        ticket = t.slice(note.length);
+      }
+      return `<div class="easyRow" style="gap:2px">${note}${renderTrait(ticket)}</div>`;
+    }).join('') }</div>`;
   }
   function getInfoBlock() {
     const entryArr = [];

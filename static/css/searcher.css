@@ -1,0 +1,67 @@
+
+.MoveInfo-OuterFrame {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Searcher-OuterFrame {
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.TextSearcherContainer { position: relative; }
+.TextSearcher {
+  border: 2px solid black;
+  height: 30px;
+  width: 100%;
+  border-radius: 50px;
+  padding: 4px 11px 4px 31px;
+  font-size: 16px;
+  color: #555;
+}
+.TextSearcher:focus { outline: none; }
+.searchicon {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  background: transparent;
+  border: 3px solid black;
+  left: 10px;
+  top: 8px;
+  border-radius: 100%;
+}
+.searchicon:after {
+  content: '';
+  position: absolute;
+  background: black;
+  height: 7px;
+  width: 3px;
+  bottom: -6px;
+  right: -4px;
+  transform: rotate(-45deg);
+}
+
+.SelectorContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.SelectorLabel {
+  display: block;
+  border-radius: 50px;
+  height: 26px; width: 60px; flex-shrink: 0;
+  text-align: center;
+  filter: brightness(0.5);
+}
+.SelectorLabel:has(input:checked) {
+  filter: brightness(1);
+}
+.SelectorLabel > span {
+}
+.HiddenCheckbox {
+  display: none;
+}
