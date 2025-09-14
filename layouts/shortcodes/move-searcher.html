@@ -3,6 +3,9 @@
 
 <script src="{{ .Site.BaseURL }}/data/move-list.js"></script>
 <script>
+  const pageSize = 50;
+  const searchRetArray = [];
+
   window.onload = init();
 
   function init() {
@@ -11,18 +14,17 @@
     }, 100);
   }
 
-  function render(itemArr) {
-    const elem = document.getElementById("TheMoveList");
-    elem.innerHTML = itemArr.map( obj => renderMove(obj, {isCollapsed: true})).join('');
-  }
-  function search() {
+  function search(idx = 0) {
     const nameSearchInput = document.getElementById("search-move-text-input").value;
-    render(filter(MOVES));
+    doFilter(MOVES);
+
+    renderPagination(searchRetArray.length, idx);
+    renderMoves(searchRetArray.slice(idx*pageSize, (idx+1)*pageSize));
   }
-  function filter(dataArr) {
+  function doFilter(dataArr) {
+    searchRetArray.length = 0;
+
     const params = getFilterParams();  
-    const result = [];
-    
     dataArr.forEach(data => {
       // Filter Name & Alias
       if (params.text != "") {
@@ -37,10 +39,33 @@
         if (!params.typeSelector.includes(data.type.toLowerCase())) return ;
       }
 
-      result.push(data);
+      searchRetArray.push(data);
     });
+    return searchRetArray;
+  }
 
-    return result;
+  function renderMoves(itemArr) {
+    const elem = document.getElementById("TheMoveList");
+    elem.innerHTML = itemArr.map( obj => renderMove(obj, {isCollapsed: true})).join('');
+  }
+  function renderPagination(total, activeIdx) {
+    const pageNum = Math.ceil(total / pageSize);
+    const elems = [
+      document.getElementById("search-page-1"),
+      document.getElementById("search-page-2")
+    ]
+    
+    // Clear
+    for (let elem of elems) {
+      elem.innerHTML = "";
+    }
+    // Append
+    for (let i=0; i<pageNum; i++) {
+      const isActive = (activeIdx === i);
+      for (let elem of elems) {
+        elem.innerHTML += `<div class="PageBtn ${isActive? "active": "clickable"}" ${isActive? "": `onClick="search(${i})"`}>${i+1}</div>`;
+      }
+    }
   }
 
   function getFilterParams() {
@@ -65,6 +90,7 @@
       <span class="searchicon"></span>
     </div>
 
+    <!-- Type Select -->
     <div class="SelectorContainer">
       {{ range $index, $val := $typeValArr }}
         <label class="SelectorLabel {{ $val }}TypeBgColor">
@@ -74,10 +100,12 @@
       {{ end }}
     </div>
 
+    <!-- Pagination-top -->
+    <div id="search-page-1" class="Pagination"></div>
   </div>
-
-
 
   <div id="TheMoveList" style="display:flex; flex-direction: column; gap:1px;"></div>
 
+  <!-- Pagination-bottom -->
+  <div id="search-page-2" class="Pagination"></div>
 </div>
