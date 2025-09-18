@@ -33,6 +33,27 @@ Utils.getPokeAttribute = function(key) {
     case "sdef": return "特防";
     case "spe":  return "特殊";
     case "acc":  return "命中";
+    case "all-attribute":  return "全能力值";
+    case "rand": return "隨機能力值";
+  }
+  return "";
+}
+Utils.getPokeAilment = function(key) {
+  switch(key.toLowerCase()) {
+    case "ailment":   return "異常狀態"
+    case "confuse":   return "混亂";
+    case "flinch":    return "畏縮";
+    case "poison":    return "中毒";
+    case "badpoison": return "劇毒";
+    case "paralysis": return "麻痺";
+    case "freeze":    return "冰凍";
+    case "sleep":     return "睡眠";
+    case "love":      return "著迷";
+    case "disabled":  return "定身法";
+    case "burn":      return "灼傷";
+    case "burn1":     return "灼傷1級";
+    case "burn2":     return "灼傷2級";
+    case "burn3":     return "灼傷3級";
   }
   return "";
 }

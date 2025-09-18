@@ -46,7 +46,7 @@ function renderMove(moveObj, options) {
     entryArr.push(`<div><b>傷害</b>：${moveObj.dmg_roll}</div>`);
     if (moveObj.effect) {
       entryArr.push(`<div><b>額外效果</b>：</div>`);
-      entryArr.push(`<div class="ExtraEffect">${moveObj.effect}</div>`);
+      entryArr.push(`<div class="ExtraEffect">${moveObj.effect.replace(/\n/g, '<br>')}</div>`);
     }
     return `<div class="Info">${ entryArr.join('') }</div>`;
   }
