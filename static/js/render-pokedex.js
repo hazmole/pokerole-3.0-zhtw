@@ -1,0 +1,3 @@
+function renderPokedex(pokedexObj, options) {
+  
+}

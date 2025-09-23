@@ -3,69 +3,31 @@
 
 <script src="{{ .Site.BaseURL }}/data/move-list.js"></script>
 <script>
-  const pageSize = 50;
-  const searchRetArray = [];
+  const searcher = new MySearcher("Move", MOVES, (data) => {
+    return renderMove(data, {isCollapsed:true});
+  }, doFilter);
+  window.addEventListener("load", function(event){
+    searcher.Search(0);
+  });
+  document.addEventListener("Move-search", function(event){
+    searcher.Search(event.detail.page);
+  });
 
-  window.onload = init();
-
-  function init() {
-    setTimeout( ()=>{
-      search();
-    }, 100);
-  }
-
-  function search(idx = 0) {
-    const nameSearchInput = document.getElementById("search-move-text-input").value;
-    doFilter(MOVES);
-
-    renderPagination(searchRetArray.length, idx);
-    renderMoves(searchRetArray.slice(idx*pageSize, (idx+1)*pageSize));
-  }
-  function doFilter(dataArr) {
-    searchRetArray.length = 0;
-
-    const params = getFilterParams();  
-    dataArr.forEach(data => {
-      // Filter Name & Alias
-      if (params.text != "") {
-        const key = params.text.toLowerCase();
-        if (!data.name.toLowerCase().includes(key)
-          && !data.alias.toLowerCase().includes(key)) {
-          return ;
-        }
-      }
-      // Filter Types
-      if (params.typeSelector.length > 0) {
-        if (!params.typeSelector.includes(data.type.toLowerCase())) return ;
-      }
-
-      searchRetArray.push(data);
-    });
-    return searchRetArray;
-  }
-
-  function renderMoves(itemArr) {
-    const elem = document.getElementById("TheMoveList");
-    elem.innerHTML = itemArr.map( obj => renderMove(obj, {isCollapsed: true})).join('');
-  }
-  function renderPagination(total, activeIdx) {
-    const pageNum = Math.ceil(total / pageSize);
-    const elems = [
-      document.getElementById("search-page-1"),
-      document.getElementById("search-page-2")
-    ]
-    
-    // Clear
-    for (let elem of elems) {
-      elem.innerHTML = "";
-    }
-    // Append
-    for (let i=0; i<pageNum; i++) {
-      const isActive = (activeIdx === i);
-      for (let elem of elems) {
-        elem.innerHTML += `<div class="PageBtn ${isActive? "active": "clickable"}" ${isActive? "": `onClick="search(${i})"`}>${i+1}</div>`;
+  function doFilter(data, searchText) {
+    // Filter Name & Alias
+    if (searchText != "") {
+      const key = searchText.toLowerCase();
+      if (!data.name.toLowerCase().includes(key)
+        && !data.alias.toLowerCase().includes(key)) {
+        return false;
       }
     }
+    // Filter Types
+    const params = getFilterParams();
+    if (params.typeSelector.length > 0) {
+      if (!params.typeSelector.includes(data.type.toLowerCase())) return ;
+    }
+    return true;
   }
 
   function getFilterParams() {
@@ -81,31 +43,21 @@
   }
 </script>
 
-
-<div class="MoveInfo-OuterFrame">
-  <div class="Searcher-OuterFrame">
-    <!-- Text -->
-    <div class="TextSearcherContainer">
-      <input class="TextSearcher" id="search-move-text-input" type="text" onchange="search()" />
-      <span class="searchicon"></span>
-    </div>
+<div class="MySearcher-OuterFrame">
+  <div class="SearchPanel">
+    {{- partial "my-search-text" (dict "ID" "Move") }}
 
     <!-- Type Select -->
     <div class="SelectorContainer">
       {{ range $index, $val := $typeValArr }}
         <label class="SelectorLabel {{ $val }}TypeBgColor">
-          <input id="search-move-type-{{ $val }}" class="HiddenCheckbox" type="checkbox" onchange="search()" />
+          <input id="search-move-type-{{ $val }}" class="HiddenCheckbox" type="checkbox" onchange="searcher.Search(0)" />
           <span>{{ index $typeTextArr $index }}</span>
         </label>
       {{ end }}
     </div>
 
-    <!-- Pagination-top -->
-    <div id="search-page-1" class="Pagination"></div>
   </div>
 
-  <div id="TheMoveList" style="display:flex; flex-direction: column; gap:1px;"></div>
-
-  <!-- Pagination-bottom -->
-  <div id="search-page-2" class="Pagination"></div>
+  {{- partial "my-search-datablock" (dict "ID" "Move") }}
 </div>
