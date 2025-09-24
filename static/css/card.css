@@ -1,0 +1,116 @@
+/* Card */
+.Card { width: 100%; max-width: 650px; }
+.Card > .Header { 
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  background-color: rgba(255, 255, 255, .5); }
+.Card > .Header > div { 
+  height: 45px;
+  display: flex;
+  align-items: center;}
+.Card .Header > .Name {
+  flex-grow: 1;
+  padding: 0 .5em;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: black;
+}
+.Card > .Header > .Name > .Alias { font-size: 0.8em; margin-left: .5em; }
+.Card > .Footer { 
+  padding: 3px 10px;
+  font-size: 12px;
+  line-height: 20px;
+  text-indent: .5em; }
+
+
+/* Pokemon */
+.Pokemon.Card { border-radius: 10px 10px 0 0; overflow: hidden; }
+.Pokemon .Header > .Type {
+  flex-shrink:0; width: 80px;
+  font-weight: 700;
+  justify-content: center;
+}
+.Pokemon .Body {
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
+  gap: 10px;
+}
+.Pokemon .BasicData { width: 160px; }
+.Pokemon .ShapeInfo { width: 140px; }
+.Pokemon .AttributeData { width: 150px; }
+.Pokemon .EvolveData { margin-right: 10px; }
+.Pokemon .ShapeInfo {
+  margin-left: 5px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+}
+.Pokemon .ShapeInfo > .image {
+  padding: 0 20px;
+  height: 100px;
+}
+.Pokemon .ShapeInfo > .novice-icon {
+  position: absolute;
+  left: 0; top: 0;
+  width: 32px; 
+}
+.Pokemon .ShapeInfo > .category {
+  width: 150px;
+  text-align: center;
+  font-size: 13px;
+}
+.Pokemon .ShapeInfo > .category > div { background-color: rgba(255, 255, 255, .5); color: black; }
+.Pokemon .ShapeInfo > .size {
+  font-size: 13px;
+}
+.Pokemon .dataBlock.easyColumn {
+  gap: 5px;
+}
+.Pokemon .dataBlock > .entry.easyRow {
+  align-items: baseline;
+  gap: 8px;
+}
+.Pokemon .dataBlock > .entry > .title {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  background-color: #ddd;
+  font-weight: bold;
+}
+.Pokemon .inline-rank {
+  height: 16px;
+  margin: 0 3px 3px 0;
+}
+
+.Pokemon .MoveList > button {
+  width: 100%;
+}
+.Pokemon .MoveList > .MoveTable {
+  
+}
+
+.Pokemon .moveEntry {
+  align-items: center; padding: 1px 0;
+  color: black;
+  font-size: 14px;
+}
+.Pokemon .moveEntry:nth-child(even) { background-color: #ddd; }
+.moveEntry > .rank-icon {
+  height: 16px; margin: 0 3px;
+}
+.moveEntry > .move-type {
+  width: 50px; text-align: center;
+}
+.moveEntry > .move-category {
+  width: 50px; text-align: center;
+}
+.moveEntry > .move-name {
+  margin-left: 5px;
+}
+
+.Pokemon .MoveList { background-color: white; }
+.Pokemon .Footer { background-color: #d2d2d2; }

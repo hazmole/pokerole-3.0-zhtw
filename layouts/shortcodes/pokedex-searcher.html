@@ -2,13 +2,14 @@
 {{ $typeTextArr := slice "蟲" "惡" "龍" "電" "妖精" "格鬥" "火" "幽靈" "草" "地面" "冰" "一般" "毒" "超能" "岩" "鋼" "水" }}
 
 <script src="{{ .Site.BaseURL }}/data/move-list.js"></script>
+<script src="{{ .Site.BaseURL }}/data/pokedex-list.js"></script>
 <script>
-  const searcher = new MySearcher("Move", MOVES, 
-    (data) => { return renderMove(data, {isCollapsed:true}) },
+  const searcher = new MySearcher("Pokemon", POKEDEX, 
+    (data) => { return renderPokemon(data, {isCollapsed:true}) },
     doFilter
   );
   window.addEventListener("load", (event) => { searcher.Search(0) });
-  document.addEventListener("Move-search", (event) => { searcher.Search(event.detail.page) });
+  document.addEventListener("Pokemon-search", (event) => { searcher.Search(event.detail.page) });
 
   function doFilter(data, searchText) {
     // Filter Name & Alias
@@ -20,19 +21,20 @@
       }
     }
     // Filter Types
+    /*
     const params = getFilterParams();
     if (params.typeSelector.length > 0) {
       if (!params.typeSelector.includes(data.type.toLowerCase())) return ;
     }
+    */
     return true;
   }
 
   function getFilterParams() {
     const params = {};
 
-    params.text = document.getElementById("search-move-text-input")?.value || "";
     params.typeSelector = Utils.allPokeTypes().filter((typeText) => {
-      const elem = document.getElementById(`search-move-type-${typeText.capitalize()}`);
+      const elem = document.getElementById(`search-pokemon-type-${typeText.capitalize()}`);
       return elem && elem.checked;
     });
 
@@ -42,13 +44,13 @@
 
 <div class="MySearcher-OuterFrame">
   <div class="SearchPanel">
-    {{- partial "my-search-text" (dict "ID" "Move") }}
+    {{- partial "my-search-text" (dict "ID" "Pokemon") }}
 
     <!-- Type Select -->
     <div class="SelectorContainer">
       {{ range $index, $val := $typeValArr }}
         <label class="SelectorLabel {{ $val }}TypeBgColor">
-          <input id="search-move-type-{{ $val }}" class="HiddenCheckbox" type="checkbox" onchange="searcher.Search(0)" />
+          <input id="search-pokemon-type-{{ $val }}" class="HiddenCheckbox" type="checkbox" onchange="searcher.Search(0)" />
           <span>{{ index $typeTextArr $index }}</span>
         </label>
       {{ end }}
@@ -56,5 +58,5 @@
 
   </div>
 
-  {{- partial "my-search-datablock" (dict "ID" "Move") }}
+  {{- partial "my-search-datablock" (dict "ID" "Pokemon") }}
 </div>

@@ -56,7 +56,7 @@
   --poke-ground-type-color: #DDBB55;
   --poke-ice-type-color: #77DDFF;
   --poke-poison-type-color: #AA5599;
-  --poke-normal-type-color: #dddddd;
+  --poke-normal-type-color: #BBBBAA;
   --poke-psychic-type-color: #FF99C2;
   --poke-rock-type-color: #BBAA66;
   --poke-steel-type-color: #AAAABB;
@@ -92,6 +92,10 @@
 .easyRow {
   display: flex;
   flex-direction: row;
+}
+.easyColumn {
+  display: flex;
+  flex-direction: column;
 }
 
 /* MoveCard */
@@ -164,3 +168,7 @@
 .RockTypeBgColor { background-color: var(--poke-rock-type-color); }
 .SteelTypeBgColor { background-color: var(--poke-steel-type-color); }
 .WaterTypeBgColor { background-color: var(--poke-water-type-color); }
+
+.physicalCategoryBgColor { background-color: #FF4400; color: #FFCC00; }
+.specialCategoryBgColor { background-color: #2266CC; color: #BBEEFF; }
+.supportCategoryBgColor { background-color: #999999; color: #EEEEEE; }

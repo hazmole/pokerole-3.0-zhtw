@@ -57,6 +57,27 @@ Utils.getPokeAilment = function(key) {
   }
   return "";
 }
+Utils.getRank = function(key) {
+  switch(key.toLowerCase()) {
+    case "starter":  return "啟程級";
+    case "rookie":   return "新手級";
+    case "standard": return "標準級";
+    case "advanced": return "進階級";
+    case "expert":   return "專家級";
+    case "ace":      return "王牌級";
+    case "master":   return "大師級";
+    case "champion": return "冠軍級";
+  }
+  return "";
+}
+Utils.getMoveCategory = function(key) {
+  switch(key.toLowerCase()) {
+    case "physical":  return "物理";
+    case "special":   return "特殊";
+    case "support":   return "變化";
+  }
+  return "";
+}
 
 Utils.allPokeTypes = function() {
   return [ "bug", "dark", "dragon", "electric", "fairy", "fighting", "fire", "flying", "ghost", "grass", "ground", "ice", "normal", "poison", "psychic", "rock", "steel", "water" ];
