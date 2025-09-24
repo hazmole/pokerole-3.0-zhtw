@@ -60,7 +60,9 @@
                   class="gdoc-nav__entry{{- if not .external }}
                     {{- if $isCurrent }}{{ printf " is-active" }}{{ end }}
                   {{- end }}"
-                  target="_blank"
+                  {{ if .external }}
+                    target="_blank"
+                  {{- end }}
                 >
                   {{ $name }}
                 </a>
