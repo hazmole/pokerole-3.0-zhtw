@@ -1,4 +1,4 @@
-const PageSize = 50;
+const PageSize = 25;
 
 class MySearcher {
   constructor(ID, dataArr, renderFunc, filterFunc) {

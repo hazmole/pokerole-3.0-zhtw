@@ -105,6 +105,13 @@
 .moveEntry > .move-name {
   margin-left: 5px;
 }
+.moveEntry > .move-popout {
+  height: 22px;
+  width: 12px;
+  margin-top: -5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
 
 .Pokemon .MoveList { background-color: white; }
-.Pokemon .Footer { background-color: #d2d2d2; }
+.Pokemon .Footer { background-color: #7d7d7d; color: white; }

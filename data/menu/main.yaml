@@ -1,0 +1,9 @@
+---
+main:
+  - name: 資料章節
+    ref: "/database"
+    sub:
+      - name: 寶可夢圖鑑
+        ref: "/database/pokemon-list"
+      - name: 招式列表
+        ref: "/database/move-list"

@@ -1,6 +1,6 @@
 ---
 weight: 5
-title: "招式資料"
+title: "招式列表"
 ---
 
 {{< move-searcher >}}

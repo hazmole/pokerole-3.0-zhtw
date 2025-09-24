@@ -81,6 +81,10 @@ function renderPokemon(pokemonObj, options) {
   }
   function getMoveEntry(moveTag) {
     const moveObj = MOVES[moveTag.idx];
+    if (!moveObj) {
+      console.error(pokemonObj.ID, moveTag);
+      return '';
+    }
 
     return `<div class="moveEntry easyRow">${[
       `<img class="rank-icon" src="${ROOT_PATH}/images/icons/ball-${moveTag.rank}.png">`,
@@ -88,6 +92,7 @@ function renderPokemon(pokemonObj, options) {
       `<div class="move-category ${moveObj.category}CategoryBgColor">${Utils.getMoveCategory(moveObj.category)}</div>`,
       `<div class="move-power">${moveObj.power}</div>`,
       `<div class="move-name">${    moveObj.name}</div>`,
+      `<div class="move-popout"><a href="${ROOT_PATH}/database/move-info#${moveObj.name}" target="_blank"><img src="${ROOT_PATH}/images/icons/pop-out.svg"></a></div>`,
     ].join('')}</div>`;
   }
   function getFooterBlock() {
