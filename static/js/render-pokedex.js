@@ -28,7 +28,6 @@ function renderPokemon(pokemonObj, options) {
   function getShapeInfoBlock() {
     const category = pokemonObj.misc.desc.split('\n')[0];
     const isNovice = (pokemonObj.rank == "starter") || (pokemonObj.rank == "rookie");
-    console.log(isNovice);
     return `<div class="ShapeInfo dataBlock">${[
       `<img class="image" src="${ROOT_PATH}/images/pokedex/${pokemonObj.ID}.png">`,
       (isNovice)? `<img class="novice-icon" src="${ROOT_PATH}/images/icons/novice.png">`: '',
@@ -76,8 +75,8 @@ function renderPokemon(pokemonObj, options) {
   }
   function getMovesBlock() {
     return `<div class="MoveList">${[
-      `<button>招式表</button>`,
-      `<div class="MoveTable">${pokemonObj.moves.map( moveTag => getMoveEntry(moveTag) ).join('')}</div>`,
+      `<button onClick="toggleMoveList(this)">招式表</button>`,
+      `<div class="MoveTable hidden">${pokemonObj.moves.map( moveTag => getMoveEntry(moveTag) ).join('')}</div>`,
     ].join('')}</div>`;
   }
   function getMoveEntry(moveTag) {
@@ -87,6 +86,7 @@ function renderPokemon(pokemonObj, options) {
       `<img class="rank-icon" src="${ROOT_PATH}/images/icons/ball-${moveTag.rank}.png">`,
       `<div class="move-type ${moveObj.type}TypeBgColor">${Utils.getPokeType(moveObj.type)}</div>`,
       `<div class="move-category ${moveObj.category}CategoryBgColor">${Utils.getMoveCategory(moveObj.category)}</div>`,
+      `<div class="move-power">${moveObj.power}</div>`,
       `<div class="move-name">${    moveObj.name}</div>`,
     ].join('')}</div>`;
   }
