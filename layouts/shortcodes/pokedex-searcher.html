@@ -1,5 +1,8 @@
 {{ $typeValArr  := slice "Bug" "Dark" "Dragon" "Electric" "Fairy" "Fighting" "Fire" "Ghost" "Grass" "Ground" "Ice" "Normal" "Poison" "Psychic" "Rock" "Steel" "Water" }}
 {{ $typeTextArr := slice "蟲" "惡" "龍" "電" "妖精" "格鬥" "火" "幽靈" "草" "地面" "冰" "一般" "毒" "超能" "岩" "鋼" "水" }}
+{{ $rankValArr  := slice "starter" "rookie" "standard" "advanced" "expert" "ace" "master" "champion" }}
+{{ $rankTextArr := slice "啟程級" "新手級" "標準級" "進階級" "專家級" "王牌級" "大師級" "冠軍級" }}
+
 
 <script src="{{ .Site.BaseURL }}/data/move-list.js"></script>
 <script src="{{ .Site.BaseURL }}/data/pokedex-list.js"></script>
@@ -21,12 +24,16 @@
       }
     }
     // Filter Types
-    /*
     const params = getFilterParams();
     if (params.typeSelector.length > 0) {
-      if (!params.typeSelector.includes(data.type.toLowerCase())) return ;
+      if (params.typeSelector.length > 2) return false;
+
+      const pokemonTypeList = data.type.map(t => t.toLowerCase());
+      if (!params.typeSelector.every((t) => pokemonTypeList.includes(t))) return false;
     }
-    */
+    if (params.rank) {
+      if (data.rank != params.rank) return false;
+    }
     return true;
   }
 
@@ -37,6 +44,8 @@
       const elem = document.getElementById(`search-pokemon-type-${typeText.capitalize()}`);
       return elem && elem.checked;
     });
+
+    params.rank = document.getElementById(`search-pokemon-rank`).value;
 
     return params;
   }
@@ -50,10 +59,28 @@
     <div class="SelectorContainer">
       {{ range $index, $val := $typeValArr }}
         <label class="SelectorLabel {{ $val }}TypeBgColor">
-          <input id="search-pokemon-type-{{ $val }}" class="HiddenCheckbox" type="checkbox" onchange="searcher.Search(0)" />
+          <input id="search-pokemon-type-{{ $val }}" class="hidden" type="checkbox" onchange="searcher.Search(0)" />
           <span>{{ index $typeTextArr $index }}</span>
         </label>
       {{ end }}
+    </div>
+
+    <div class="MySearcher-AdvancedFrame">
+      <a onClick="toggleAdvancedSearch(this)">進階搜尋</a>
+      <div class="MySearcher-AdvancedParams hidden">
+        <!-- is Novice -->
+        <div>
+          <h4>建議階級</h4>
+          <select id="search-pokemon-rank" onchange="searcher.Search(0)">
+            <option value="" selected><span class="label">任意</span></option>
+            {{ range $index, $val := $rankValArr }}
+            <option value="{{ $val }}"><span class="label"><img src="{{ $.Site.BaseURL }}/images/icons/ball-{{ $val }}.png">{{ index $rankTextArr $index }}</span></option>
+            {{ end }}
+			    </select>
+          
+        </div>
+
+      </div>
     </div>
 
   </div>

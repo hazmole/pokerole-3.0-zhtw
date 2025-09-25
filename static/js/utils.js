@@ -93,6 +93,10 @@ function toggleMoveList(elem) {
   const bodyElem = (elem).nextSibling;
   bodyElem.classList.toggle("hidden");
 }
+function toggleAdvancedSearch(elem) {
+  const bodyElem = (elem).nextElementSibling;
+  bodyElem.classList.toggle("hidden");
+}
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
