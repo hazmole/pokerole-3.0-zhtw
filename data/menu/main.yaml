@@ -1,7 +1,21 @@
 ---
 main:
+  - name: 規則章節
+    sub:
+      - name: 介紹
+      - name: 系統說明
+      - name: 角色創建
+      - name: 寶可夢戰鬥
+      - name: 捕捉寶可夢
+      - name: 訓練寶可夢
+      - name: 旅途中的道具
+      - name: 寶可夢圖鑑
+      - name: 寶可夢招式
+      - name: 寶可夢特性
+      - name: 遊戲主持人
+      - name: 冠軍精神
+
   - name: 資料章節
-    ref: "/database"
     sub:
       - name: 寶可夢圖鑑
         ref: "/database/pokemon-list"
