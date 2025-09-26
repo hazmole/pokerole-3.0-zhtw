@@ -49,15 +49,18 @@
 }
 .SelectorLabel {
   display: block;
-  border-radius: 50px;
-  height: 26px; width: 60px; flex-shrink: 0;
-  text-align: center;
+  cursor: pointer;
   filter: brightness(0.5);
 }
 .SelectorLabel:has(input:checked) {
   filter: brightness(1);
 }
-.HiddenCheckbox { display: none; }
+
+.SelectorLabel.PokeType {
+  border-radius: 50px;
+  height: 26px; width: 60px; flex-shrink: 0;
+  text-align: center;
+}
 
 
 /* DataList */
@@ -93,8 +96,10 @@
   padding: 10px;
 }
 .MySearcher-AdvancedParams h4 {
-  margin-top: 0;
   color: black;
+}
+.MySearcher-AdvancedParams h4:nth-child(1) {
+  margin-top: 0;
 }
 
 .MySearcher-AdvancedParams .label > img {

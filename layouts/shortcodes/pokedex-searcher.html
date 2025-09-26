@@ -58,7 +58,7 @@
     <!-- Type Select -->
     <div class="SelectorContainer">
       {{ range $index, $val := $typeValArr }}
-        <label class="SelectorLabel {{ $val }}TypeBgColor">
+        <label class="SelectorLabel PokeType {{ $val }}TypeBgColor">
           <input id="search-pokemon-type-{{ $val }}" class="hidden" type="checkbox" onchange="searcher.Search(0)" />
           <span>{{ index $typeTextArr $index }}</span>
         </label>

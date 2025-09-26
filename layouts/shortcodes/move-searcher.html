@@ -1,14 +1,16 @@
-{{ $typeValArr  := slice "Bug" "Dark" "Dragon" "Electric" "Fairy" "Fighting" "Fire" "Ghost" "Grass" "Ground" "Ice" "Normal" "Poison" "Psychic" "Rock" "Steel" "Water" }}
-{{ $typeTextArr := slice "蟲" "惡" "龍" "電" "妖精" "格鬥" "火" "幽靈" "草" "地面" "冰" "一般" "毒" "超能" "岩" "鋼" "水" }}
-
 <script src="{{ .Site.BaseURL }}/data/move-list.js"></script>
 <script>
   const searcher = new MySearcher("Move", MOVES, 
     (data) => { return renderMove(data, {isCollapsed:true}) },
     doFilter
   );
-  window.addEventListener("load", (event) => { searcher.Search(0) });
+  window.addEventListener("load", (event) => { 
+    searcher.Search(0);
+    drawTraitIconOnAdvanceSearch();
+  });
   document.addEventListener("Move-search", (event) => { searcher.Search(event.detail.page) });
+
+  const targetIcons = ["one-foe", "rand-foe", "aoe-foe", "foe-field", "self", "one-ally", "aoe-ally", "aoe-all", "ally-field", "one-any", "field"];
 
   function doFilter(data, searchText) {
     // Filter Name & Alias
@@ -19,11 +21,28 @@
         return false;
       }
     }
-    // Filter Types
+    
     const params = getFilterParams();
+
+    // Filter Types
     if (params.typeSelector.length > 0) {
       if (!params.typeSelector.includes(data.type.toLowerCase())) return ;
     }
+    // Filter Category
+    if (params.category != "") {
+      if (!params.category.includes(data.category)) return ;
+    }
+    if (params.acc1 != "") {
+      if (!data.acc_roll.includes(params.acc1)) return ;
+    }
+    if (params.acc2 != "") {
+      if (!data.acc_roll.includes(params.acc2)) return ;
+    }
+    if (params.targetSelector.length > 0) {
+      if (!params.targetSelector.some((iconKey) => data.traits.includes(`target|${iconKey}`))) return ;
+    }
+
+
     return true;
   }
 
@@ -36,9 +55,35 @@
       return elem && elem.checked;
     });
 
+    params.category = document.getElementById(`search-move-category`).value;
+    params.acc1     = document.getElementById(`search-move-acc1`).value;
+    params.acc2     = document.getElementById(`search-move-acc2`).value;
+
+    params.targetSelector = targetIcons.filter((iconKey) => {
+      const elem = document.getElementById(`search-move-target-${iconKey}`);
+      return elem && elem.checked;
+    });
+
     return params;
   }
+
+  function drawTraitIconOnAdvanceSearch() {
+    const targetRootElem = document.getElementById("search-move-targets");
+
+    for (let iconKey of targetIcons) {
+      targetRootElem.innerHTML += `<label class="SelectorLabel">${[
+        `<input id="search-move-target-${iconKey}" class="hidden" type="checkbox" onchange="searcher.Search(0)" />`,
+        `<span>${renderTrait("target|" + iconKey)}</span>`
+      ].join('')}</label>`;
+    }
+  }
 </script>
+
+{{ $typeValArr  := slice "Bug" "Dark" "Dragon" "Electric" "Fairy" "Fighting" "Fire" "Ghost" "Grass" "Ground" "Ice" "Normal" "Poison" "Psychic" "Rock" "Steel" "Water" }}
+{{ $typeTextArr := slice "蟲" "惡" "龍" "電" "妖精" "格鬥" "火" "幽靈" "草" "地面" "冰" "一般" "毒" "超能" "岩" "鋼" "水" }}
+{{ $AccTextArr := slice "力量" "靈巧" "活力" "特殊" "洞察" "強壯" "帥氣" "美麗" "聰明" "可愛" "意志" }}
+{{ $Acc2TextArr := slice "鬥毆" "導引" "閃避" "警覺" "運動" "自然" "隱匿" "魅惑" "共感" "禮儀" "威嚇" "表演" }}
+{{ $TargetValArr := slice  }}
 
 <div class="MySearcher-OuterFrame">
   <div class="SearchPanel">
@@ -47,11 +92,46 @@
     <!-- Type Select -->
     <div class="SelectorContainer">
       {{ range $index, $val := $typeValArr }}
-        <label class="SelectorLabel {{ $val }}TypeBgColor">
-          <input id="search-move-type-{{ $val }}" class="HiddenCheckbox" type="checkbox" onchange="searcher.Search(0)" />
+        <label class="SelectorLabel PokeType {{ $val }}TypeBgColor">
+          <input id="search-move-type-{{ $val }}" class="hidden" type="checkbox" onchange="searcher.Search(0)" />
           <span>{{ index $typeTextArr $index }}</span>
         </label>
       {{ end }}
+    </div>
+
+    <div class="MySearcher-AdvancedFrame">
+      <a onClick="toggleAdvancedSearch(this)">進階搜尋</a>
+      <div class="MySearcher-AdvancedParams hidden">
+        <div>
+          <h4>招式類型</h4>
+          <select id="search-move-category" onchange="searcher.Search(0)">
+            <option value="" selected><span class="label">任意</span></option>
+            <option value="physical"><span class="label"><img src="{{ $.Site.BaseURL }}/images/icons/move-category-physical.png">物理招式</span></option>
+            <option value="special"><span class="label"><img src="{{ $.Site.BaseURL }}/images/icons/move-category-special.png">特殊招式</span></option>
+            <option value="support"><span class="label"><img src="{{ $.Site.BaseURL }}/images/icons/move-category-support.png">變化招式</span></option>
+			    </select>
+
+          <h4>命中判定</h4>
+          <select id="search-move-acc1" onchange="searcher.Search(0)" style="min-width:80px">
+            <option value="" selected><span class="label">任意</span></option>
+            {{ range $index, $val := $AccTextArr }}
+              <option value="{{ $val }}"><span class="label">{{ $val }}</span></option>
+            {{ end }}
+			    </select>
+          +
+          <select id="search-move-acc2" onchange="searcher.Search(0)" style="min-width:80px">
+            <option value="" selected><span class="label">任意</span></option>
+            {{ range $index, $val := $Acc2TextArr }}
+              <option value="{{ $val }}"><span class="label">{{ $val }}</span></option>
+            {{ end }}
+			    </select>
+
+          <h4>目標</h4>
+          <div id="search-move-targets" class="SelectorContainer">
+          </div>
+        </div>
+
+      </div>
     </div>
 
   </div>
