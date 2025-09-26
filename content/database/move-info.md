@@ -26,7 +26,7 @@ title: "招式詳情"
       panelElem.innerHTML += "<hr>";
       panelElem.innerHTML += "<b>能夠學會這個招式的寶可夢：</b>";
 
-      const pokemonList = POKEDEX.filter( pokemon => pokemon.moves.some(mt => mt.idx === moveIdx) );
+      const pokemonList = POKEDEX.filter( pokemon => pokemon.moves && pokemon.moves.some(mt => mt.idx === moveIdx) );
       const listElem = document.getElementById("TheList");
       listElem.innerHTML = pokemonList.map( pokemon => pokemon.name ).join('<br>')
     }

@@ -74,6 +74,7 @@ function renderPokemon(pokemonObj, options) {
     return `<div class="EvolveData dataBlock easyColumn">${ contentArr.join('') }</div>`;
   }
   function getMovesBlock() {
+    if (!pokemonObj.moves) return '';
     return `<div class="MoveList">${[
       `<button onClick="toggleMoveList(this)">招式表</button>`,
       `<div class="MoveTable hidden">${pokemonObj.moves.map( moveTag => getMoveEntry(moveTag) ).join('')}</div>`,
