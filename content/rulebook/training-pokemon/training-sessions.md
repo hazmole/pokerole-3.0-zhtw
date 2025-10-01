@@ -67,7 +67,7 @@ title: "訓練環節"
 <div style="font-size: 14px">冰伊布的技能</div>
 </div>
 =
-<div>
+<div class="easyRow" style="gap: 5px">
 {{< dice-result num="1" >}}
 {{< dice-result num="4" mark="success" >}}
 {{< dice-result num="4" mark="success" >}}
@@ -106,7 +106,7 @@ title: "訓練環節"
 <br>
 <div class="easyRow" style="align-items: center; gap: 5px; flex-wrap:wrap;">
 =
-<div>
+<div class="easyRow" style="gap: 5px">
 {{< dice-result num="5" mark="success" >}}
 {{< dice-result num="3" >}}
 {{< dice-result num="1" >}}
