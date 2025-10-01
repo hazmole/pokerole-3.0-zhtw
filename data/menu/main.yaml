@@ -2,18 +2,34 @@
 main:
   - name: 規則章節
     sub:
-      - name: 介紹
-      - name: 系統說明
-      - name: 角色創建
-      - name: 寶可夢戰鬥
-      - name: 捕捉寶可夢
+      #- name: 介紹
+      #- name: 系統說明
+      #- name: 角色創建
+      #- name: 寶可夢戰鬥
+      #- name: 捕捉寶可夢
       - name: 訓練寶可夢
-      - name: 旅途中的道具
-      - name: 寶可夢圖鑑
-      - name: 寶可夢招式
-      - name: 寶可夢特性
-      - name: 遊戲主持人
-      - name: 冠軍精神
+        ref: "/rulebook/training-pokemon"
+        sub:
+          - name: 如何訓練你的寶可夢
+            ref: "/rulebook/training-pokemon/how-to-train-pokemon"
+          - name: 通過戰鬥訓練
+            ref: "/rulebook/training-pokemon/train-through-battle"
+          - name: 訓練環節
+            ref: "/rulebook/training-pokemon/training-sessions"
+          #- name: 訓練不聽話的寶可夢
+          #- name: 訓練點數
+          #- name: 提升階級
+          #- name: 寶可夢進化
+          #- name: 學習新的招式
+          #- name: 越級
+          #- name: 重新訓練
+          #- name: 培育屋
+      #- name: 旅途中的道具
+      #- name: 寶可夢圖鑑
+      #- name: 寶可夢招式
+      #- name: 寶可夢特性
+      #- name: 遊戲主持人
+      #- name: 冠軍精神
 
   - name: 資料章節
     sub:

@@ -2,6 +2,7 @@
 
 :root {
   --code-max-height: 60rem;
+  --max-width: 650px;
 }
 
 /* Light mode theming */
@@ -83,7 +84,8 @@
   margin-bottom: 0;
 }
 :root p {
-  margin-block-start: .5em;
+  margin-block-start: .8em;
+  margin-block-end: .8em;
 }
 
 .clickable {
@@ -97,6 +99,11 @@
   display: flex;
   flex-direction: column;
 }
+
+.gdoc-markdown table { max-width: var(--max-width); }
+.gdoc-markdown table th { background-color: #7d0000; color: white; }
+.gdoc-markdown table tr { background-color: white; }
+.gdoc-markdown table tr:nth-child(2n) { background-color: #f9dada !important; }
 
 /* MoveCard */
 .MoveCard { width: 100%; max-width: 650px; }
@@ -197,6 +204,27 @@ option::checkmark { order: 1; margin-left: auto; content: "✔"; }
 @starting-style {
   ::picker(select):popover-open { opacity: 0; }
 }
+
+.block {
+  border: rgba(0, 0, 0, .5) 2px solid;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: .5em;
+  max-width: var(--max-width);
+}
+.block > * > *:first-child { margin-top: 0; }
+.block > * > *:last-child { margin-bottom: 0; }
+.block > * > ul:last-child { margin-bottom: 0; }
+
+.block.yellow { background-color: #E6C01D; color:black; }
+.block.gray { background-color: #c5c5c5; color:black; }
+.block h3 { color: inherit; margin-bottom: .5em; }
+.block h4 { text-decoration: underline; }
+
+.rdice {         filter: invert(45%) sepia(20%) saturate(16%) hue-rotate(314deg) brightness(91%) contrast(88%)     !important; }
+.rdice.fail {    filter: invert(25%) sepia(68%) saturate(7010%) hue-rotate(357deg) brightness(115%) contrast(134%) !important; }
+.rdice.success { filter: invert(64%) sepia(73%) saturate(483%) hue-rotate(75deg) brightness(94%) contrast(88%)     !important; }
+
 
 /* ColorTheme */
 .BugTypeBgColor { background-color: var(--poke-bug-type-color); }

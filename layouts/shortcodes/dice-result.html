@@ -1,0 +1,6 @@
+{{- $number := (.Get "num") }}
+{{- $mark := (.Get "mark") }}
+
+<div style="display: inline-block;background-color: white; border-radius: 5px;">
+  <img class="rdice {{ $mark }}" src="{{ .Site.BaseURL }}/images/icons/dice-{{ $number }}.svg" width="30px" />
+</div>
