@@ -20,12 +20,18 @@ main:
             ref: "/rulebook/training-pokemon/training-disobedient-pokemon"
           - name: 訓練點數
             ref: "/rulebook/training-pokemon/training-point"
-          #- name: 提升階級
-          #- name: 寶可夢進化
+          - name: 提升階級
+            ref: "/rulebook/training-pokemon/rank-up"
+          - name: 寶可夢進化
+            ref: "/rulebook/training-pokemon/pokemon-evolution"
           #- name: 學習新的招式
+          #   ref: "/rulebook/training-pokemon/learn-new-moves"
           #- name: 越級
+          #   ref: "/rulebook/training-pokemon/over-ranking"
           #- name: 重新訓練
+          #   ref: "/rulebook/training-pokemon/retraining"
           #- name: 培育屋
+          #   ref: "/rulebook/training-pokemon/day-care-centers"
       #- name: 旅途中的道具
       #- name: 寶可夢圖鑑
       #- name: 寶可夢招式

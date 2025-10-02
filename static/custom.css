@@ -69,8 +69,14 @@
   --icon-heal-color: #F8ABA6;
 }
 
-:root h2 {
+:root h1:first-child,
+:root h2:first-child,
+:root h3:first-child {
   margin-top: 0;
+}
+
+:root h2 {
+  margin-top: 1rem;
   margin-bottom: 1rem;
   color: var(--footer-background);
 }
