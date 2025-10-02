@@ -16,8 +16,10 @@ main:
             ref: "/rulebook/training-pokemon/train-through-battle"
           - name: 訓練環節
             ref: "/rulebook/training-pokemon/training-sessions"
-          #- name: 訓練不聽話的寶可夢
-          #- name: 訓練點數
+          - name: 訓練不聽話的寶可夢
+            ref: "/rulebook/training-pokemon/training-disobedient-pokemon"
+          - name: 訓練點數
+            ref: "/rulebook/training-pokemon/training-point"
           #- name: 提升階級
           #- name: 寶可夢進化
           #- name: 學習新的招式

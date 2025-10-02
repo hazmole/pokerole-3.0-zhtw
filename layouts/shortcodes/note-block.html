@@ -1,0 +1,17 @@
+{{ $type := .Get 0 }}
+
+<div class="shortCode noteBlock {{ $type }}">
+  <div class="header">
+    <span>
+      {{ if eq ($type) "trainer" }}
+        訓練家小技巧
+      {{ end }}
+      {{ if eq ($type) "story" }}
+        說書人筆記
+      {{ end }}
+    </span>
+  </div>
+  <div class="content markdown-inner">
+    {{ .Inner | markdownify }}
+  </div>
+</div>
