@@ -24,10 +24,10 @@ main:
             ref: "/rulebook/training-pokemon/rank-up"
           - name: 寶可夢進化
             ref: "/rulebook/training-pokemon/pokemon-evolution"
-          #- name: 學習新的招式
-          #   ref: "/rulebook/training-pokemon/learn-new-moves"
-          #- name: 越級
-          #   ref: "/rulebook/training-pokemon/over-ranking"
+          - name: 學習新的招式
+            ref: "/rulebook/training-pokemon/learn-new-moves"
+          - name: 超階
+            ref: "/rulebook/training-pokemon/over-ranking"
           #- name: 重新訓練
           #   ref: "/rulebook/training-pokemon/retraining"
           #- name: 培育屋

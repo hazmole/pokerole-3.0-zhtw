@@ -106,6 +106,17 @@
   flex-direction: column;
 }
 
+.gdoc-markdown h2::before {
+  content: "⬛";
+}
+
+.gdoc-markdown hr {
+  margin: 2em 0;
+  max-width: var(--max-width);
+  border-style: dashed;
+  border-width: 2px;
+}
+
 .gdoc-markdown table { max-width: var(--max-width); }
 .gdoc-markdown table:not(.lntable):not(.highlight) thead { border-bottom-width: 0; }
 .gdoc-markdown table th { background-color: #7d0000; color: white; }
