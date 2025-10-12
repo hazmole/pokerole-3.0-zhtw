@@ -28,10 +28,10 @@ main:
             ref: "/rulebook/training-pokemon/learn-new-moves"
           - name: 超階
             ref: "/rulebook/training-pokemon/over-ranking"
-          #- name: 重新訓練
-          #   ref: "/rulebook/training-pokemon/retraining"
-          #- name: 培育屋
-          #   ref: "/rulebook/training-pokemon/day-care-centers"
+          - name: 重新訓練
+            ref: "/rulebook/training-pokemon/retraining"
+          - name: 培育屋
+            ref: "/rulebook/training-pokemon/day-care-centers"
       #- name: 旅途中的道具
       #- name: 寶可夢圖鑑
       #- name: 寶可夢招式
