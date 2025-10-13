@@ -124,6 +124,9 @@
 .gdoc-markdown table tr:nth-child(2n) { background-color: #f9dada !important; }
 .gdoc-markdown table tr:last-child { border-bottom: #7d0000 solid 2px !important; }
 
+.gdoc-markdown .recap h4 { font-size: 1.1em; margin-bottom: 0; }
+
+
 
 /* MoveCard */
 .MoveCard { width: 100%; max-width: 650px; }

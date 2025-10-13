@@ -6,7 +6,16 @@ main:
       #- name: 系統說明
       #- name: 角色創建
       #- name: 寶可夢戰鬥
-      #- name: 捕捉寶可夢
+      - name: 收服寶可夢
+        ref: "/rulebook/catching-pokemon"
+        sub:
+          - name: 前言
+          - name: 棲息地
+          - name: 特殊的寶可夢
+          - name: 精靈球
+          - name: 收服野生寶可夢
+          - name: 其他收服寶可夢的方式
+
       - name: 訓練寶可夢
         ref: "/rulebook/training-pokemon"
         sub:
