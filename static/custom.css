@@ -117,6 +117,9 @@
   border-width: 2px;
 }
 
+.gdoc-markdown { max-width: var(--max-width); }
+.gdoc-markdown p { margin: 1.2em 0; }
+
 .gdoc-markdown table { max-width: var(--max-width); }
 .gdoc-markdown table:not(.lntable):not(.highlight) thead { border-bottom-width: 0; }
 .gdoc-markdown table th { background-color: #7d0000; color: white; }

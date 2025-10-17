@@ -10,8 +10,11 @@ main:
         ref: "/rulebook/catching-pokemon"
         sub:
           - name: 前言
+            ref: "/rulebook/catching-pokemon/intro"
           - name: 棲息地
+            ref: "/rulebook/catching-pokemon/habitats"
           - name: 特殊的寶可夢
+            ref: "/rulebook/catching-pokemon/special-pokemon"
           - name: 精靈球
           - name: 收服野生寶可夢
           - name: 其他收服寶可夢的方式
