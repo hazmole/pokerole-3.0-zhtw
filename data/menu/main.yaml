@@ -16,8 +16,11 @@ main:
           - name: 特殊的寶可夢
             ref: "/rulebook/catching-pokemon/special-pokemon"
           - name: 精靈球
+            ref: "/rulebook/catching-pokemon/pokeballs"
           - name: 收服野生寶可夢
+            ref: "/rulebook/catching-pokemon/catching-wild-pokemon"
           - name: 其他收服寶可夢的方式
+            ref: "/rulebook/catching-pokemon/alternatives-to-catch-pokemon"
 
       - name: 訓練寶可夢
         ref: "/rulebook/training-pokemon"
