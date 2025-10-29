@@ -10,6 +10,8 @@ main:
             ref: "/rulebook/system-explained/core-concepts"
           - name: 生理和心理能力值
             ref: "/rulebook/system-explained/mental-and-physical-attributes"
+          - name: 社交能力值
+            ref: "/rulebook/system-explained/social-attributes"
       #- name: 角色創建
       #- name: 寶可夢戰鬥
       - name: 收服寶可夢

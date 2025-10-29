@@ -123,7 +123,7 @@
 .gdoc-markdown table { max-width: var(--max-width); }
 .gdoc-markdown table:not(.lntable):not(.highlight) thead { border-bottom-width: 0; }
 .gdoc-markdown table th { background-color: #7d0000; color: white; }
-.gdoc-markdown table tr { background-color: white; border: #7d0000 solid; border-width: 0 2px 0 2px; }
+.gdoc-markdown table tr { background-color: white; border: #7d0000 solid; border-width: 0 2px 0 2px; border-bottom: 0 !important; }
 .gdoc-markdown table tr:nth-child(2n) { background-color: #f9dada !important; }
 .gdoc-markdown table tr:last-child { border-bottom: #7d0000 solid 2px !important; }
 
