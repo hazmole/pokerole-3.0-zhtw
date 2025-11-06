@@ -12,6 +12,8 @@ main:
             ref: "/rulebook/system-explained/mental-and-physical-attributes"
           - name: 社交能力值
             ref: "/rulebook/system-explained/social-attributes"
+          - name: 技能
+            ref: "/rulebook/system-explained/skills"
       #- name: 角色創建
       #- name: 寶可夢戰鬥
       - name: 收服寶可夢

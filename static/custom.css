@@ -81,9 +81,11 @@
   color: var(--footer-background);
 }
 :root h3 {
+  margin-top: 1rem;
   margin-bottom: 0;
   font-size: 1.3rem;
   color: var(--header-background);
+  text-decoration: underline;
 }
 :root h4 {
   margin-top: .5em;
@@ -118,7 +120,7 @@
 }
 
 .gdoc-markdown { max-width: var(--max-width); }
-.gdoc-markdown p { margin: 1.2em 0; }
+.gdoc-markdown p { margin: 0.2em 0 1.2em 0; }
 
 .gdoc-markdown table { max-width: var(--max-width); }
 .gdoc-markdown table:not(.lntable):not(.highlight) thead { border-bottom-width: 0; }
@@ -235,7 +237,7 @@ option::checkmark { order: 1; margin-left: auto; content: "✔"; }
   border: rgba(0, 0, 0, .5) 2px solid;
   border-radius: 10px;
   padding: 10px;
-  margin: .5em 0;
+  margin: 1em 0;
   max-width: var(--max-width);
 }
 .block > * > *:first-child { margin-top: 0; }
